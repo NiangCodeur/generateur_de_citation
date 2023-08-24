@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Tuto</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Citation du jour</h2>
+        <p id="citation">Chargement</p>
+        <span id="Author">Chargement</span>
+        <button class="btn" onclick="getquote(api)">Générateur de Citation</button>
+    </div> 
+    <script>
+        const citation = document.getElementById('citation')
+        const Author = document.getElementById('Author')
+        const api = "https://api.quotable.io/random"
+
+       async function getquote(url) {
+            const response = await fetch(url) 
+           let data = await response.json() 
+            <!-- console.log(data)  -->
+           citation.innerHTML = data.content
+           Author.innerHTML = data.author
+           Author.style.background = "red"
+           Author.style.padding = "5px 20px"
+        }
+        getquote(api)
+    </script>
+</body>
+</html>
